@@ -1,0 +1,11 @@
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\bin\Debug\ShortcutFolder.exe.config
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\bin\Debug\ShortcutFolder.exe
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\bin\Debug\ShortcutFolder.pdb
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.csproj.AssemblyReference.cache
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.Form1.resources
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.Properties.Resources.resources
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.csproj.GenerateResource.cache
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.csproj.CoreCompileInputs.cache
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.exe
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.pdb
+C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.Form2.resources
