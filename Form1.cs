@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
-using System.Text;
+using System.Reflection;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
 
 namespace ShortcutFolder
 {
@@ -28,7 +26,7 @@ namespace ShortcutFolder
         private void SaveData()
         {
             StreamWriter writer = new StreamWriter(myFile);
-            foreach(LabelLine line in mylabels)
+            foreach (LabelLine line in mylabels)
             {
                 writer.WriteLine(line.ToString());
             }
@@ -37,9 +35,9 @@ namespace ShortcutFolder
 
         private void LoadData()
         {
-            if(!Directory.Exists(path))
+            if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            if(!File.Exists(myFile))
+            if (!File.Exists(myFile))
                 File.WriteAllText(myFile, "");
             var rd = new StreamReader(myFile);
             MyFileReader myReader = new MyFileReader(rd.ReadToEnd());
@@ -51,7 +49,7 @@ namespace ShortcutFolder
         {
             path = @"C:/ShortcutsData/";
             string programname = Path.GetFileName(Assembly.GetEntryAssembly().Location);
-            myFile = path + (programname.Substring(0, programname.Length-4)) + ".sdf";
+            myFile = path + (programname.Substring(0, programname.Length - 4)) + ".sdf";
 
             LoadData();
 
@@ -64,7 +62,7 @@ namespace ShortcutFolder
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(index < mylabels.Count)
+            if (index < mylabels.Count)
                 listView1.Items[index].ForeColor = Color.White;
 
             index = listView1.FocusedItem.Index;
@@ -78,32 +76,32 @@ namespace ShortcutFolder
         private void nameOfApp_TextChanged(object sender, EventArgs e)
         {
             if (index >= 0)
-                mylabels[index].reName(nameOfApp.Text); 
-                //name[index] = nameOfApp.Text;
+                mylabels[index].reName(nameOfApp.Text);
+            //name[index] = nameOfApp.Text;
             RefreshList();
         }
         private void Adress_TextChanged(object sender, EventArgs e)
         {
             if (index >= 0)
                 mylabels[index].reAdress(Adress.Text);
-                //adres[index] = Adress.Text;
+            //adres[index] = Adress.Text;
             RefreshList();
-            RefreshFields();
+            RefreshImg();
         }
         private void RunVia_TextChanged(object sender, EventArgs e)
         {
             if (index >= 0)
                 mylabels[index].reVia(RunVia.Text);
-                //mypngadres[index] = CustomIMG.Text;
+            //mypngadres[index] = CustomIMG.Text;
             RefreshList();
         }
         private void CustomIMG_TextChanged(object sender, EventArgs e)
         {
             if (index >= 0)
                 mylabels[index].reImgAdress(CustomIMG.Text);
-                //mypngadres[index] = CustomIMG.Text;
+            //mypngadres[index] = CustomIMG.Text;
             RefreshList();
-            RefreshFields();
+            RefreshImg();
         }
 
         private void NewItem_Click(object sender, EventArgs e)
@@ -142,10 +140,10 @@ namespace ShortcutFolder
                 listView1.Items.Add(item);
             }
 
-            if(index >= 0 && index < mylabels.Count)
-            listView1.Items[index].ForeColor = Color.Cyan;
+            if (index >= 0 && index < mylabels.Count)
+                listView1.Items[index].ForeColor = Color.Cyan;
 
-            nameOfApp.Enabled = index >= mylabels.Count ?  false : true;
+            nameOfApp.Enabled = index >= mylabels.Count ? false : true;
             Adress.Enabled = index >= mylabels.Count ? false : true;
             RunVia.Enabled = index >= mylabels.Count ? false : true;
             CustomIMG.Enabled = index >= mylabels.Count ? false : true;
@@ -163,6 +161,10 @@ namespace ShortcutFolder
             Adress.Text = mylabels[index].Adress;
             RunVia.Text = mylabels[index].Via;
 
+            
+        }
+        void RefreshImg()
+        {
             try
             {
                 if (mylabels[index].myPngAdress == "-default")
@@ -174,7 +176,12 @@ namespace ShortcutFolder
                 }
                 else
                 {
-                    Bitmap bitmap = new Bitmap(mylabels[index].myPngAdress);
+                    Bitmap bitmap;
+                    if (WebImgGetter.IsValidUrl(mylabels[index].myPngAdress))
+                        bitmap = WebImgGetter.GetBitmapFromWeb(mylabels[index].myPngAdress);
+                    else
+                        bitmap = new Bitmap(mylabels[index].myPngAdress);
+
                     pictureBox1.Image = bitmap;
                     pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 }
@@ -185,6 +192,8 @@ namespace ShortcutFolder
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
+        
+        
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
@@ -200,7 +209,7 @@ namespace ShortcutFolder
                 process.StartInfo = new ProcessStartInfo
                 {
                     FileName = mylabels[index].Adress,
-                    Arguments = mylabels[index].Via == "-systemSettings" ? null : mylabels[index].Via,
+                    Arguments = mylabels[index].Via == " - systemSettings" ? null : mylabels[index].Via,
                 };
                 process.Start();
             }

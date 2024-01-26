@@ -8,4 +8,3 @@ C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFold
 C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.csproj.CoreCompileInputs.cache
 C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.exe
 C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.pdb
-C:\Users\formc\source\repos\ShortcutFolder\ShortcutFolder\obj\Debug\ShortcutFolder.Form2.resources
