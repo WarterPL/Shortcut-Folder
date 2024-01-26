@@ -108,7 +108,7 @@ namespace ShortcutFolder
             // customIMGlabel
             // 
             this.customIMGlabel.AutoSize = true;
-            this.customIMGlabel.BackColor = System.Drawing.Color.Red;
+            this.customIMGlabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.customIMGlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.customIMGlabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.customIMGlabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -131,9 +131,9 @@ namespace ShortcutFolder
             // 
             this.NewItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.NewItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NewItem.Location = new System.Drawing.Point(709, 186);
+            this.NewItem.Location = new System.Drawing.Point(611, 186);
             this.NewItem.Name = "NewItem";
-            this.NewItem.Size = new System.Drawing.Size(143, 30);
+            this.NewItem.Size = new System.Drawing.Size(192, 30);
             this.NewItem.TabIndex = 36;
             this.NewItem.Text = "New shortcut";
             this.NewItem.UseVisualStyleBackColor = false;
@@ -143,9 +143,9 @@ namespace ShortcutFolder
             // 
             this.Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.Delete.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Delete.Location = new System.Drawing.Point(858, 186);
+            this.Delete.Location = new System.Drawing.Point(809, 186);
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(143, 30);
+            this.Delete.Size = new System.Drawing.Size(192, 30);
             this.Delete.TabIndex = 37;
             this.Delete.Text = "Delete shortcut";
             this.Delete.UseVisualStyleBackColor = false;
@@ -154,10 +154,11 @@ namespace ShortcutFolder
             // run
             // 
             this.run.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.run.Cursor = System.Windows.Forms.Cursors.Hand;
             this.run.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.run.Location = new System.Drawing.Point(548, 186);
+            this.run.Location = new System.Drawing.Point(394, 186);
             this.run.Name = "run";
-            this.run.Size = new System.Drawing.Size(155, 30);
+            this.run.Size = new System.Drawing.Size(211, 30);
             this.run.TabIndex = 38;
             this.run.Text = "Run application";
             this.run.UseVisualStyleBackColor = false;
@@ -170,9 +171,11 @@ namespace ShortcutFolder
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(801, 222);
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(394, 225);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(190, 190);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
@@ -203,7 +206,7 @@ namespace ShortcutFolder
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1010, 430);
+            this.ClientSize = new System.Drawing.Size(1010, 426);
             this.Controls.Add(this.RunViaLabel);
             this.Controls.Add(this.RunVia);
             this.Controls.Add(this.pictureBox1);
