@@ -16,7 +16,11 @@ namespace ShortcutFolder
         static List<LabelLine> mylabels = new List<LabelLine>();
         int index = 0;
 
-        string myFile = "file", path;
+        public static Form1 Instance;
+        public static string myFile { get; private set; } = "file";
+        public static string path { get; private set; }
+
+        private bool isLoaded = false;
 
         public Form1()
         {
@@ -47,6 +51,7 @@ namespace ShortcutFolder
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Instance = this;
             path = @"C:/ShortcutsData/";
             string programname = Path.GetFileName(Assembly.GetEntryAssembly().Location);
             myFile = path + (programname.Substring(0, programname.Length - 4)) + ".sdf";
@@ -59,6 +64,8 @@ namespace ShortcutFolder
             RefreshList();
             RefreshFields();
         }
+        private void Form1_Shown(Object sender, EventArgs e)
+        { isLoaded = true; }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -84,7 +91,6 @@ namespace ShortcutFolder
         {
             if (index >= 0)
                 mylabels[index].reAdress(Adress.Text);
-            //adres[index] = Adress.Text;
             RefreshList();
             RefreshImg();
         }
@@ -99,7 +105,6 @@ namespace ShortcutFolder
         {
             if (index >= 0)
                 mylabels[index].reImgAdress(CustomIMG.Text);
-            //mypngadres[index] = CustomIMG.Text;
             RefreshList();
             RefreshImg();
         }
@@ -148,7 +153,8 @@ namespace ShortcutFolder
             RunVia.Enabled = index >= mylabels.Count ? false : true;
             CustomIMG.Enabled = index >= mylabels.Count ? false : true;
 
-            SaveData();
+            if (isLoaded)
+                SaveData();
         }
 
         void RefreshFields()

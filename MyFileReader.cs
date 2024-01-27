@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace ShortcutFolder
 {
@@ -18,7 +22,7 @@ namespace ShortcutFolder
                 _fileContent += chr;
             }
             Console.WriteLine(_fileContent);
-            if(fileContent != "") Read(); 
+            if(fileContent != "") Read();
         }
 
         void Read()
@@ -35,27 +39,41 @@ namespace ShortcutFolder
             string viaGeter = "_via_=";
             string imgAdressGeter = "_imgAdress_=";
 
-            int start = blockContent.IndexOf(nameGeter) + nameGeter.Length;
-            int end = blockContent.IndexOf(";");
-            string readedName = blockContent.Substring(start, end - start);
-            _blockPointer = end + 1;
+            string readedName, readedAdress, readedVia, readedImgAdress;
 
-            start = blockContent.IndexOf(adressGeter) + adressGeter.Length;
-            end = blockContent.IndexOf(";", _blockPointer);
-            string readedAdress = blockContent.Substring(start, end - start);
-            _blockPointer = end + 1;
+            try
+            {
+                int start = blockContent.IndexOf(nameGeter) + nameGeter.Length;
+                int end = blockContent.IndexOf(";");
+                readedName = blockContent.Substring(start, end - start);
+                _blockPointer = end + 1;
 
-            start = blockContent.IndexOf(viaGeter) + viaGeter.Length;
-            end = blockContent.IndexOf(";", _blockPointer);
-            string readedVia = blockContent.Substring(start, end - start);
-            _blockPointer = end + 1;
+                start = blockContent.IndexOf(adressGeter) + adressGeter.Length;
+                end = blockContent.IndexOf(";", _blockPointer);
+                readedAdress = blockContent.Substring(start, end - start);
+                _blockPointer = end + 1;
 
-            start = blockContent.IndexOf(imgAdressGeter) + imgAdressGeter.Length;
-            end = blockContent.IndexOf(";", _blockPointer);
-            string readedImgAdress = blockContent.Substring(start, end - start);
-            _blockPointer = end + 1;
+                start = blockContent.IndexOf(viaGeter) + viaGeter.Length;
+                end = blockContent.IndexOf(";", _blockPointer);
+                readedVia = blockContent.Substring(start, end - start);
+                _blockPointer = end + 1;
 
-            return new LabelLine(readedName, readedAdress, readedVia, readedImgAdress);
+                start = blockContent.IndexOf(imgAdressGeter) + imgAdressGeter.Length;
+                end = blockContent.IndexOf(";", _blockPointer);
+                readedImgAdress = blockContent.Substring(start, end - start);
+                _blockPointer = end + 1;
+                return new LabelLine(readedName, readedAdress, readedVia, readedImgAdress);
+            }
+            catch (Exception ex)
+            {
+                DialogResult result = MessageBox.Show($"Cannot read following shortcut:\n\n{blockContent}\n\nCreate clear shortcut where error occurred [Y]\nOpen save file and fix manually [N]",
+                    "Shortcut Folder Error Handler", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(result == DialogResult.Yes) { return new LabelLine(); }
+
+                Process.Start(Form1.myFile, @"C:\Windows\System32\notepad.exe");
+                Form1.Instance.Close();
+                return new LabelLine("ERROR", "ERROR", "ERROR", "ERROR");
+            }
         }
         LabelLine NextBlock()
         {
